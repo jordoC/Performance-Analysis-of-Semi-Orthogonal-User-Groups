@@ -199,7 +199,7 @@
                 stroke-width="2.0" stroke="black" fill="none" latexdraw:rotationAngle="0.0"/>
         </g>
         <g latexdraw:type="text" id="id300365734" fill="black" latexdraw:position="bl">
-            <text x="355.1724137931037" y="195.5172413793104">$STA_K$</text>
+            <text x="350.91011871113665" y="198.14019219898256">$STA_K$</text>
         </g>
         <g latexdraw:type="joinedLines" id="id656634278">
             <polyline
