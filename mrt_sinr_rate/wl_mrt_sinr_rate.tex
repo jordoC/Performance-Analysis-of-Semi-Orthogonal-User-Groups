@@ -1,6 +1,6 @@
-The expressions in section \ref{sec:linear_sinr} assume a two-dimensional constellation for transmitted symbols. In order to arrive at the Shannon capacity expression in Eq. \ref{eq:capacity}, symbols are chosen from a continuous alphabet that follows a circularly symmetric complex normal distribution. In this section we discuss similar expressions in the context of a single-dimensional constellation rather than a two dimensional constellation (ie. a real modulation scheme such as M-PAM rather than a complex modulation scheme such as M-QAM).
+The expressions in Section \ref{sec:linear_sinr} assume a two-dimensional constellation for transmitted symbols. In order to arrive at the Shannon capacity expression in Eq. (\ref{eq:capacity}), symbols are chosen from a continuous alphabet that follows a circularly symmetric complex normal distribution. In this section we discuss similar expressions in the context of a single-dimensional constellation rather than a two-dimensional constellation (ie. a real modulation scheme such as M-PAM rather than a complex modulation scheme such as M-QAM).
 
-Although the transmitted symbols are real-valued in this case, processing will still be performed in the complex domain. However, since the data is only being modulated onto real parts of the signals being processed, we can no longer model data as proper random variables. To handle, this impropriety, we employ widely linear processing techniques \cite{Adali2011}.
+Although the transmitted symbols are real-valued in this case, processing will still be performed in the complex domain. However, since the data is only being modulated onto real parts of the signals being processed, we can no longer model signals as proper random variables. To handle, this impropriety, we employ widely linear processing techniques \cite{Adali2011}.
 
 First we consider relaxing the orthogonality and SNR constraints, by limiting  requirements to only the real part of the channel inner product and norm.  Let the  transformation, $\mathcal{T}$, be the transformation of the complex vector in $\mathbb{C}^N$ to a real vector in $\mathbb{R}^{2N}$:
 \begin{equation}\label{eq:complex_real_xform}
@@ -38,7 +38,7 @@ The increase in dimensions from $N \rightarrow 2N$ also changes the the argument
     \end{aligned}
 \end{equation}
 
-The expression for SUS group existence probability remains the same as Eq. (\ref{eq:p_exist}) substituting the necessary values for $p_s,p_\perp$. The widely linear existence probability will be given by $Pr_{\epsilon,\mathfrak{R}}$.
+The expression for SUS group existence probability remains the same as Eq. (\ref{eq:p_exist}) substituting the necessary values for $p_s,p_\perp$. The widely linear existence probability is given by $Pr_{\epsilon,\mathfrak{R}}$.
 
 In order to make a fair comparison between single-dimonsional and two-dimensional constellation schemes in terms of sum rate, the capacity of the single-dimensional scheme must be scaled by a factor of two since there are now only half as many bits per symbol. Therefore the unconditional sum rate for a single-dimensional constellation scheme is given by:
 \begin{equation}\label{eq:sum_rate_real}
