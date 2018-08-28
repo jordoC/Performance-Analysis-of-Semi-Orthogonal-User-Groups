@@ -1,0 +1,48 @@
+The expressions in section \ref{sec:linear_sinr} assume a two-dimensional constellation for transmitted symbols. In order to arrive at the Shannon capacity expression in Eq. \ref{eq:capacity}, symbols are chosen from a continuous alphabet that follows a circularly symmetric complex normal distribution. In this section we discuss similar expressions in the context of a single-dimensional constellation rather than a two dimensional constellation (ie. a real modulation scheme such as M-PAM rather than a complex modulation scheme such as M-QAM).
+
+Although the transmitted symbols are real-valued in this case, processing will still be performed in the complex domain. However, since the data is only being modulated onto real parts of the signals being processed, we can no longer model data as proper random variables. To handle, this impropriety, we employ widely linear processing techniques \cite{Adali2011}.
+
+First we consider relaxing the orthogonality and SNR constraints, by limiting  requirements to only the real part of the channel inner product and norm.  Let the  transformation, $\mathcal{T}$, be the transformation of the complex vector in $\mathbb{C}^N$ to a real vector in $\mathbb{R}^{2N}$:
+\begin{equation}\label{eq:complex_real_xform}
+    \begin{aligned}
+        \underline{h_i} \in \mathbb{C}^N \xrightarrow{\mathcal{T}} \hat{\underline{h}}_i = [ \mathfrak{Re} \lbrace \underline{h}_i \rbrace \ \mathfrak{Im}\lbrace \underline{h}_i \rbrace ] \in \mathbb{R}^{2N}
+    \end{aligned}
+\end{equation}
+Thus,
+\begin{equation}\label{eq:orth_real_transp}
+    \begin{aligned}
+        \mathfrak{Re} \lbrace \underline{h}_i^H\underline{h}_j \rbrace = \hat{\underline{h}}_i^T \hat{\underline{h}}_j 
+    \end{aligned}
+\end{equation}
+
+Following from Eqs. (\ref{eq:S_e},\ref{eq:orth_real_transp}) the relaxed expression for the collection of SUS groups becomes:
+\begin{equation}\label{eq:wl_S_e}
+    \begin{aligned}
+        \mathcal{S}_{\epsilon,\mathfrak{R}} = \lbrace \mathcal{S}_a \big|\  \hat{\underline{h}}_i^T \hat{\underline{h}}_j<\ \epsilon \ \text{;} \ \rho^-<\Vert \hat{\underline{h}}_i \Vert^2 < \rho^+\ \forall \ i \neq j \in \mathcal{S}_a \rbrace
+    \end{aligned}
+\end{equation}
+
+For the relaxed SNR requirement,the Gamma distribution used to derive the expression in (\ref{eq:p_s}), now only has 2$m$ degrees of freedom, rather than 4$m$ degrees of freedom since the inner product form a sum of 2$m$ real components. Therefore the expression for relaxed probability the norm will fall in the shell defined by radii $\rho^-,\rho^+$, $p_{s,\mathfrak{R}}$ becomes:
+\begin{equation}\label{eq:p_s_real}
+    \begin{aligned}
+        p_{s,\mathfrak{R}} = \Gamma_n(m,m\rho^-) - \Gamma_n(m,m\rho^+)
+    \end{aligned}
+\end{equation}
+
+The increase in dimensions from $N \rightarrow 2N$ also changes the the arguments of $\delta_c(\theta_{\epsilon,\rho},2N)$ in Eq. (\ref{eq:p_perp}) to $\delta_c(\theta_{\epsilon,\rho},4N)$.
+\begin{equation}\label{eq:p_perp_real}
+    \begin{aligned}
+        p_{\perp,\mathfrak{R}} &\geq (1-(K-l)\delta_c(\theta_{\epsilon,\rho},4N))^{K-1}\\
+        where:\\
+        \theta_{\epsilon,\rho} &= \arccos\frac{\epsilon}{\rho}
+    \end{aligned}
+\end{equation}
+
+The expression for SUS group existence probability remains the same as Eq. (\ref{eq:p_exist}) substituting the necessary values for $p_s,p_\perp$. The widely linear existence probability will be given by $Pr_{\epsilon,\mathfrak{R}}$.
+
+In order to make a fair comparison between single-dimonsional and two-dimensional constellation schemes in terms of sum rate, the capacity of the single-dimensional scheme must be scaled by a factor of two since there are now only half as many bits per symbol. Therefore the unconditional sum rate for a single-dimensional constellation scheme is given by:
+\begin{equation}\label{eq:sum_rate_real}
+    \begin{aligned}
+        C^{\star}_\mathfrak{R} &=  \frac{1}{2}(C^{\star} \ \vert \ [Pr_{\epsilon,\mathfrak{R}} = 1])\cdot Pr_{\epsilon,\mathfrak{R}}
+    \end{aligned}
+\end{equation}

@@ -1,0 +1,42 @@
+A Monte Carlo simulation was performed in order to determine the ergodic sum rate. The sum rate was simulated according to Eqs. (\ref{eq:sum_rate},\ref{eq:sum_rate_real}) for $n_T$ independent trials. The values of each independent trial were then averaged together to determine the ergodic sum rate. The ergodic sum capacity is calculated as follows.
+\begin{equation}\label{eq:erg_sum_rate}
+    \begin{aligned}
+    \overline{C^\star} = \sum_{t=1}^{n_T} C_t^\star
+    \end{aligned}
+\end{equation}
+Where $t$ is the index of the independent Monte Carlo trials.
+
+A 95\% confidence interval is assumed for all simulations. The magnitude of the error on the estimated data point from the Monte Carlo simulation is given by:
+\begin{equation}\label{eq:ebar_mag}
+    \begin{aligned}
+    \vert E_{bar} \vert = \Phi^{-1}\bigg(1-\frac{1-0.95}{2}\bigg)\frac{s}{\sqrt{n_T}}
+    \end{aligned}
+\end{equation}
+Where $\Phi (\cdot)$ is the CDF for a normal distribution, and  $s = \sqrt{\frac{\sum_{t=1}^{n_T}(C_t^\star-\overline{C^\star})^2}{n_T-1}}$ is the arithmetic standard deviation of the trials. 
+
+Constant and variable parameters of the simulations are shown in Table \ref{tab:exp_param}: left-hand table shows parameters that are constant for all simulations, the right-hand table shows parameters that vary depending on the simulation. 
+\captionof{table}{Constant (left) and variable (right) experiment parameters} \label{tab:exp_param}
+\begin{tabular}{ p{1.25cm}  p{4cm}  p{2cm} }\toprule[1.5pt]
+\bf Symbol & \bf Description & \bf Value \\\midrule
+$P_{tot}$ & Total transmit power & 1 W\\
+$N$ & Number of transmit antennas & 4\\
+$\sigma_n^2$ & AWGN power & 100 mW\\
+$\rho^-$ & SNR requirement lower bound & 1\\
+$\rho^+$ & SNR requirement upper bound & 2\\
+$n_{T}$ & Number of Monte Carlo trials & 200\\
+\bottomrule[1.25pt]
+%$0$ & $0$\\
+\end{tabular}
+\quad
+%\captionof{table}{Variable Parameters} \label{tab:var_param}
+\begin{tabular}{ p{1.25cm}  p{4cm} }\toprule[1.5pt]
+\bf Symbol & \bf Description \\\midrule
+$\epsilon$ & SUS group orthogonality requirement \\
+$K$ & SUS group size \\
+$\vert \mathcal{S}_a \vert$ & Number of candidate STAs considered for SUS group \\
+\bottomrule[1.25pt]
+%$0$ & $0$\\
+\end{tabular}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{.25em}
+\renewcommand{\baselinestretch}{1.0}

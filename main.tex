@@ -8,6 +8,10 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 
+\usepackage{caption,tabularx,booktabs}
+
+\usepackage{rotating}
+
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \setlength{\parindent}{2em}
@@ -39,22 +43,30 @@
 	\maketitle
 	\newpage
     \section{Maximum Ratio Transmission Beamforming Performance as a Function of a Known Orthogonality Requirement}
-    	\subsection{System Model}
+    	\subsection{System model}
             \input{sys_mod/sys_mod}
-        \subsection{MRT Beamforming Scheme, SINR, and Sum Rate Analysis}
-        asdf
-        \subsection{Experiment Implementation and Results}
-        asdf
+        \subsection{Probability of SUS group existence}
+            \input{existence/p_s_p_orth.tex}
+        \subsection{MRT beamforming , SINR, and sum rate analysis}\label{sec:linear_sinr}
+            \input{mrt_sinr_rate/mrt_sinr_rate}
+        \subsection{MRT beamforming , SINR, and sum rate analysis for single-dimensional constellations}\label{sec:wl_sinr}
+            \input{mrt_sinr_rate/wl_mrt_sinr_rate}
+        \subsection{Experiment Implementation}
+            \input{impl_res/impl.tex}
+        \subsection{Results}
+            \input{impl_res/res.tex}
 
     \newpage
-	\section{Appendices}
+    \section{Maximum Ratio Transmission Beamforming Performance, Estimating Orthogonality Requirement}
+    WORKING ON IT... :)
+	%\section{Appendices}
 	    %\subsection{Notes on Gamma-distributed variables}
 	    %    \input{app/gamma_dist.tex}
     \newpage	
  	\begingroup
  		\renewcommand{\section}[2]{}%
  		\bibliographystyle{IEEEtran}
-% 		\bibliography{user_sel_lit}
+ 		\bibliography{references}
  	\endgroup
 \end{document}
 

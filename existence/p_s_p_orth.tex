@@ -1,0 +1,70 @@
+In this section we discuss a more formal definition of how STAs are grouped. It is assumed that the $K$ STAs shown in Fig. \ref{fig:sys_bd} are selected according to constraints or requirements placed on orthogonality between STAs, and the magnitude of the channel norm of a given STA. A finite number of STAs are considered for addition to the group. By only considering a finite number of STAs for addition to the group, we can express the probability that we can form a group of a given size that meet orthogonality and channel norm constraints \cite{Swannack2005}. 
+
+The requirement for an $\epsilon$-orthogonal group (semi-orthogonal STA selection group, or SUS group) is broken into two parts. Firstly the STAs in the group are required to have a channel norm similar to other STAs in the group. The upper and lower bound on SNR ensures that STAs in an SUS group have similar large-scale channel gains. Asserting an upper and lower bound can be viewed a coarse form of power control. 
+
+The second requirement deals with interference between STAs in an SUS group. Once it has been determined that a given STA meets the SNR requirement, then it is compared against other candidate STAs to ensure interference is sufficiently low. The inner product between a STA's channel and other candidate STA's channels is formed. The magnitude of the product is compared to a threshold , $\epsilon$. If the product is lower than the threshold, STAs are said to be $\epsilon$-orthogonal and the STAs are added to the SUS group.
+ \begin{equation}\label{eq:S_e}
+    \begin{aligned}
+        \mathcal{S}_\epsilon = \lbrace \mathcal{S}_a \big|\ | \underline{h_i}^H\underline{h_j} |\ <\ \epsilon \ \text{;} \ \rho^-<\Vert \underline{h_i} \Vert^2 < \rho^+\ \forall \ i \neq j \in \mathcal{S}_a \rbrace
+    \end{aligned}
+\end{equation}
+Where $\mathcal{S}_a$ is the set of all STAs within service range of the AP, and $\mathcal{S}_\epsilon$ is a collection of $\epsilon$-orthogonal SUS group of length $L$.
+
+Based on this expression, we ultimately want to arrive at a probability that an SUS group exists: $Pr[\mathcal{S}_\epsilon \neq \lbrace \emptyset \rbrace]$. A lower bound on $Pr[\mathcal{S}_\epsilon \neq \lbrace \emptyset \rbrace]$ based on these requirements is developed in \cite{Swannack2005}. Probability of SUS group existence depends on the orthogonality requirements given in Eq. (\ref{eq:S_e}), the group size $K$ , and the number of candidate STAs considered for addition to the SUS group, $L$. 
+
+The CDF of the channel norm will be denoted by $F_{\Vert\underline{hi}\Vert^2}(m,\rho)$, where $\rho$ are realizations of the random variable formed by the channel norm. Each term in the $N$-length vector, $\underline{h}_i$ is represented by two normal random variables: one for the real part and one for the imaginary part. When forming the L2 norm of the $N$-length vector, each multiplication forms a sum of length four where each of the arguments of the sum are a product of two random variables. Namely, the sum takes the form real$\cdot$real + real$\cdot$imaginary + imaginary$\cdot$real + imaginary$\cdot$imaginary. Thus, the CDF expression becomes:
+
+\begin{equation}\label{eq:ch_sq_cdf_chan}
+    \begin{aligned}
+        F_{\Vert\textbf{hi}\Vert^2}(\rho;m)& = \Gamma_n(2m,m\rho)\\
+        &= Pr[\Vert\textbf{h}_i\Vert^2 \leq \rho]
+    \end{aligned}
+\end{equation}
+
+The probability that the channel satisfies SNR requirements, namely that $\Vert\underline{h}_i\Vert^2$ lands in the shell between radii $\rho^+,\ \rho^-$,  is given by the subtraction of the respective CDF expressions:
+\begin{equation}\label{eq:p_s}
+    \begin{aligned}
+        p_s = \Gamma_n(2N,N\rho^-) - \Gamma_n(2N,N\rho^+)
+    \end{aligned}
+\end{equation}
+
+The conditional probability that the orthogonality requirement is met, given that the channel norm falls between $\rho^-$ and $\rho^+$, $p_\perp$, is lower bounded as follows:
+\begin{equation}\label{eq:p_perp}
+    \begin{aligned}
+        p_\perp &\geq (1-(K-l)\delta_c(\theta_{\epsilon,\rho},2N))^{K-1}\\
+        where:\\
+        \theta_{\epsilon,\rho} &= \arccos\frac{\epsilon}{\rho}
+    \end{aligned}
+\end{equation}
+
+The function $\delta_c(\theta,2m)$ is motivated by a sphere packing approach. It is defined as the ratio of the area of a spherical (polar) caps of a sphere in $2m$ dimensions formed by $\theta$ to the entire surface area of the sphere:
+\begin{equation}\label{eq:delta_c_sphere}
+    \begin{aligned}
+        \delta_c(\theta,2N) = 2\frac{\Omega_{2N}(\theta)}{\Omega_{2N}(\pi)}
+    \end{aligned}
+\end{equation}
+
+A lower bound for $\delta_c(\cdot)$ is given by:
+\begin{equation}\label{eq:delta_c_lbnd}
+    \begin{aligned}
+        \delta_c(\theta,2N) &\geq c(\theta;s,\beta)\ \ \text{if}: \ s = \frac{\pi}{2\psi_{N-2}} \ and \ \beta \geq N-1\\
+        where:\\
+        c(\theta;s,\beta) &\triangleq \bigg(\frac{2}{\pi}\theta\bigg)^s\sin^\beta\theta\\
+        \psi_N &\triangleq \frac{\sqrt{\pi}}{N}\frac{\Gamma(\frac{N+1}{2})}{\Gamma(\frac{N}{2})}
+    \end{aligned}
+\end{equation}
+
+The expression that an SUS group of at least size $K$ will exist within a  pool of $L$ candidate STAs is lower bounded by:
+\begin{equation}\label{eq:p_exist}
+    \begin{aligned}
+        Pr_\epsilon = Pr[\vert \mathcal{S}_\epsilon \vert > 0] &\geq Pr[M_\rho \geq K] - c_1 ( 1 + p_s (e^{-E(p_\perp,K)} -1 ))^L\\
+        where:\\
+        E(p,K) &\triangleq \text{max}\bigg \lbrace \frac{2p^2}{K},\frac{8p}{25K}\big(\frac{K-1}{e\cdot K}\big)^{K-1}\bigg \rbrace \\
+        c_1 &=  \begin{cases}
+                    \text{exp}(\frac{2p_\perp^2(K-1)}{K}), & \text{if } E(p_\perp,K) = \frac{2p_\perp^2}{K}, \\
+                    1, & \text{otherwise}.
+                \end{cases}\\
+        Pr[M_\rho \geq K]&= \sum_{j=K}^{L}\binom{L}{j}p_s^j (1-p_s)^{L-j}
+    \end{aligned}
+\end{equation}
+Derivations and proofs of $\delta_c(\cdot), P_\epsilon$ are length, and, therefore, will not be regurgitated here. Please refer to \cite{Swannack2005}, \cite{SwannackThesis} for such proofs.
