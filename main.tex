@@ -8,6 +8,9 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 
+\usepackage{tikz}
+\usetikzlibrary{shadings,intersections}
+
 \usepackage{caption,tabularx,booktabs}
 
 \usepackage{rotating}
@@ -42,23 +45,32 @@
 \begin{document}
 	\maketitle
 	\newpage
-    \section{Maximum Ratio Transmission Beamforming Performance as a Function of a Known Orthogonality Requirement}
-    	\subsection{System model}
-            \input{sys_mod/sys_mod}
-        \subsection{Probability of SUS group existence}
-            \input{existence/p_s_p_orth.tex}
-        \subsection{MRT beamforming , SINR, and sum rate analysis}\label{sec:linear_sinr}
-            \input{mrt_sinr_rate/mrt_sinr_rate}
-        \subsection{MRT beamforming , SINR, and sum rate analysis for single-dimensional constellations}\label{sec:wl_sinr}
-            \input{mrt_sinr_rate/wl_mrt_sinr_rate}
+	\section{Introduction}
+	    \input{intro/intro.tex} 
+    \section{System model}
+        \input{sys_mod/sys_mod}
+    \section{Probability of SUS group existence}
+        \subsection{Projecting vectors to points on spherical surface}\label{sec:chan_norm}
+            \input{existence/chan_norm_projections.tex}
+        \subsection{$\epsilon$-orthogonality of points on spherical surface}\label{sec:spherical_caps}
+            \input{existence/spherical_caps.tex}
+            \input{existence/frac_area_prob.tex}
+        \subsection{$\epsilon$-orthogonal group existence probability}
+            \input{existence/indicator_rvs.tex}
+            \input{existence/swannack_graphs.tex}
+        %\input{existence/p_s_p_orth.tex}
+    \section{Beamforming schemes}
+        \subsection{MRT beamforming , SINR, and sum rate analysis}\label{sec:mrt_linear_sinr}
+            \input{beamforming/mrt_sinr_rate}
+        \subsection{Zero-forcing beamforming , SINR, and sum rate analysis}\label{sec:zf_linear_sinr}
+            \input{beamforming/zf_sinr_rate.tex}
+        \subsection{MRT beamforming for single-dimensional constellations}\label{sec:mrt_wl_sinr}
+            \input{beamforming/wl_mrt_sinr_rate}
+    \section{Numerical simulation}
         \subsection{Experiment Implementation}
             \input{impl_res/impl.tex}
         \subsection{Results}
             \input{impl_res/res.tex}
-
-    \newpage
-    \section{Maximum Ratio Transmission Beamforming Performance, Estimating Orthogonality Requirement}
-    WORKING ON IT... :)
 	%\section{Appendices}
 	    %\subsection{Notes on Gamma-distributed variables}
 	    %    \input{app/gamma_dist.tex}

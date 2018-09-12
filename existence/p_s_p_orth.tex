@@ -1,4 +1,6 @@
-In this section we discuss a more formal definition of how STAs are grouped. It is assumed that the $K$ STAs shown in Fig. \ref{fig:sys_bd} are selected according to constraints or requirements placed on orthogonality between STAs, and the magnitude of the channel norm of a given STA. A finite number of STAs are considered for addition to the group. By only considering a finite number of STAs for addition to the group, we can express the probability that we can form a group of a given size that meet orthogonality and channel norm constraints \cite{Swannack2005}. 
+In this section we discuss a more formal definition of how STAs are grouped. It is assumed that the $K$ STAs shown in Fig. \ref{fig:sys_bd} are selected according to constraints or requirements placed on orthogonality between STAs, and the magnitude of the channel norm of a given STA. 
+
+By only considering a finite number of STAs for addition to the group, we can express the probability that we can form a group of a given size that meet orthogonality and channel norm constraints \cite{Swannack2005}. 
 
 The requirement for an $\epsilon$-orthogonal group (semi-orthogonal STA selection group, or SUS group) is broken into two parts. Firstly the STAs in the group are required to have a channel norm similar to other STAs in the group. The upper and lower bound on SNR ensures that STAs in an SUS group have similar large-scale channel gains. Asserting an upper and lower bound can be viewed a coarse form of power control. 
 
@@ -31,7 +33,7 @@ The probability that the channel satisfies SNR requirements, namely that $\Vert\
 The conditional probability that the orthogonality requirement is met, given that the channel norm falls between $\rho^-$ and $\rho^+$, $p_\perp$, is lower bounded as follows:
 \begin{equation}\label{eq:p_perp}
     \begin{aligned}
-        p_\perp &\geq (1-(K-l)\delta_c(\theta_{\epsilon,\rho},2N))^{K-1}\\
+        p_\perp &\geq (1-\delta_c(\theta_{\epsilon,\rho},2N))^{K-1}\\
         where:\\
         \theta_{\epsilon,\rho} &= \arccos\frac{\epsilon}{\rho}
     \end{aligned}

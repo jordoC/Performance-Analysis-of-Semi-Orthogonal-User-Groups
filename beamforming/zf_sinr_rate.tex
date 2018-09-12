@@ -1,0 +1,80 @@
+In the context of a densely populated wireless LAN, a zero-forcing (ZF) beamforming scheme is a reasonable channel precoding choice for several reasons. Since the desity of STAs is high, it possible, if not likely, that the wireless channel is interference-limited. Taking this into consideration, a ZF scheme is likely a good choice to limit interference. Another advantage of the ZF scheme is its relative simplicity compared to other channel precoding schemes such as dirty-paper coding or minimum mean squared error (MMSE) beamforming. Moreover, it has been shown in \cite{Yoo2006}, \cite{Swannack2005} that asymptotic performance of the ZF scheme approaches that of DPC as the number of users becomes sufficiently large. Unsurprisingly, the simplicity of the ZF scheme comes with a cost. This cost comes in the form of inverting the channel. However, we will attempt to mitigate this cost by conditioning the channels belonging to the STAs in a SUS group. Since the ZF scheme uses these channels as arguments of the beamforming vectors, the losses associated with inverting the channel matrix to generate bamforming vectors can be mitigated.
+
+The objective of the ZF beamforming scheme is to eliminate interference amongst users in the SUS group. Let us consider the  SINR expression that follows from Eq. (\ref{eq:rx_sig_expanded}). The SINR for the $i^{th}$ STA in a given SUS group is given by:
+\begin{equation}\label{eq:sinr}
+     \begin{aligned}
+        SINR_i &= \frac{\vert \underline{h_i}^H \underline w_i \vert^2P_i}{ \sum_{j \neq i}^K \vert \underline{h_i}^H \underline{w_j}\vert^2 P_j +\sigma_n^2}\ \ .
+     \end{aligned}
+ \end{equation}
+ 
+ The purpose of the ZF scheme is to eliminate the interference term  $\sum_{j \neq i}^K \vert \underline{h_i}^H \underline{w_j}\vert^2$. This objective can be achieved by selecting the beamforming vectors from a pseudo inverse of the channel matrix. When the channel vector and its pseudo inverse are multiplied together, its off-diagonal elements associated with interference are set to zero, while the diagonal associated with signal channel gain remain non-zero. First let us form a $N \times K$ matrix $H$, such that $\underline{h_i} \in H\ \forall\ i=1,2\ldots K$ form the columns of $H$. We define a similar $N \times K$ matrix W, such that $\underline{w_i} \in H\ \forall\ i=1,2\ldots K$ form the columns of $W$. Now, according to the ZF scheme, we set $W$ to be the pseudo-inverse of $H$:
+ \begin{equation}\label{eq:zf_pseudo_inv}
+     \begin{aligned}
+        W &= H^+\\
+        &= H^H(HH^H)^{-1}\ \ .
+     \end{aligned}
+ \end{equation}
+ 
+ Thus, the SINR expression from Eq. (\ref{eq:sinr}) becomes:
+  \begin{equation}\label{eq:zf_sinr}
+     \begin{aligned}
+        SINR_i^{ZF} &= \frac{\vert \underline{h_i}^H \underline{w_i} \vert^2 P_i}{\sigma_n^2}\\
+        &subject\ to:\\
+        &\sum_i^K \Vert \underline{w_i} \Vert ^2 P_i \leq P
+     \end{aligned}
+ \end{equation}
+ 
+ In the ZF case, $\Vert \underline{w_i}\Vert ^2$ corresponds to the $i^{th}$ diagonal element in the matrix $(HH^H)^{-1}$:
+ \begin{equation}\label{eq:zf_gamma}
+     \begin{aligned}
+        \gamma_i &= \frac{1}{\Vert \underline{w_i}\Vert ^2}\\
+        &= \frac{1}{[(HH^H)^{-1}]_{i,i}}
+     \end{aligned}
+ \end{equation}
+ 
+ In order to arrive at a lower bound on the ergodic capacity associated with the ZF scheme, we must relate the arguments that appear in Eq. (\ref{eq:zf_sinr}) to the parameters in spherical packing model used to develop existence probabilities. However, before doing so, let us take a moment to discuss the implications of the pseudo inverse operation in more detail. As noted in \cite{Caire2003}, $\gamma_i$ is equivalent to the norm of $i^{s}$ channel projected away from the subspace formed by all other channel vectors in the SUS group. Therefore, if all the users in the SUS group form a subspace of limited dimension (ie. channel vectors are nearly colinear), we pay a large price in power get the vector associated with $\gamma_i$ away from this subspace. One could also view the psuedo inverse matrix as a transform of scaling and rotation operations on the channel matrix. As the vectors in the channel matrix become increasingly orthogonal, the linear transformation requires less scaling to achieve zero interference between vectors. In this way, by imposing orthogonality requirements on CTGs in forming SUS groups, we can improve the performance of the ZF scheme subject to finite power constraints.
+ 
+ Keeping this motivation in mind, we now set out to bound the ZFBF SINR in terms of the norm and orthogonality constraints placed on STAs in a SUS group. Based on these constraints in Eq. (\ref{eq:S_e}), the worst case orthogonality we have between any pair of channel vectors is $\epsilon$. Moreover, the worst case L2 channel norm is $\rho^-$. Let us define the the worst-case channel $K \times K$ matrix $\Hat{H}^2$ whose diagonal elements are $\rho^-$ and off diagonal elements are $\epsilon$. Note that the superscript 2 notation is adopted since elements in $\Hat{H}^2$ are second-order terms. We will also define the $K \times K$ matrix $\Hat{W}^2$ for the worst-case beamforming matrix. Now, since the matrices are square, the worst-case beamforming matrix can be given the inverse of the channel matrix:
+\begin{equation}\label{eq:zf_bf_worst_case}
+     \begin{aligned}
+        \Hat{W}^2 = (\Hat{H}^2)^{-1}
+     \end{aligned}
+ \end{equation}
+ 
+ Thus the power constraint in Eq. (\ref{eq:zf_sinr}) can be described in terms of the trace of  $\Hat{W}^2$,
+ \begin{equation}\label{eq:zf_bf_w_worst_case}
+     \begin{aligned}
+        \text{Tr}(\Hat{W}^2,i) \leq P \ \ ,
+     \end{aligned}
+ \end{equation}
+ where $\text{Tr}(A,i)$ is the sum of the first $i$ diagonal elements of the matrix $A$. It can also be shown (see \cite{SwannackThesis}, Lemma 3.4.1) that the closed form of the of $\text{Tr}(\Hat{W}^2,i)$ takes the form:
+  \begin{equation}\label{eq:zf_trace_cf}
+     \begin{aligned}
+        \text{Tr}(\Hat{W}^2,i)  = \frac{1}{\rho^-}\frac{i+(i^2-2i)\frac{\epsilon}{\rho^-}}{(1-\frac{\epsilon}{\rho^-})(1+(i-1)\frac{\epsilon}{\rho^-})}
+     \end{aligned}
+ \end{equation}
+ 
+ We will now use this result to develop a lower bound on the ergodic capacity and sum rate for the ZFBF case. In general, the maximum sum rate can be viewed as a water filling problem \cite{Caire2003},\cite{Yoo2006}. In this context, the sum rate is given by
+   \begin{equation}\label{eq:zf_sum_rate}
+     \begin{aligned}
+        \text{E}\lbrace C^{ZF}\rbrace = \text{E}\lbrace \max\limits_{\sum_i^K \gamma_i^{-1} P_i \leq P}\ \bigg( \sum_{i\in\mathsf{A}}\log_2(1 + P_i) \bigg)\rbrace\ \text{bps/Hz} \ \ ,
+     \end{aligned}
+ \end{equation}
+ where, by applying water filling,
+    \begin{equation}\label{eq:zf_waterfilling}
+     \begin{aligned}
+        P_i = \max(\mu\gamma_i-1,0) \ ;\\
+        \sum_{i\in\mathsf{A}}\max(\mu-\frac{1}{\gamma_i},0 ) = P \ \ .
+     \end{aligned}
+ \end{equation}
+ 
+ Observe that $\text{E}\lbrace C^{ZF} \rbrace \geq C^{ZF} \ \vert \ [Pr_\epsilon = 1] \cdot Pr_\epsilon$. Moreover, we can couple this realization with a sum rate expression in terms of SUS parameters such as group size, norm and orthogonality constraints. Thus, as has been shown in \cite{SwannackThesis}, Theorem 3.4.2, we have
+ \begin{equation}\label{eq:zf_bound}
+     \begin{aligned}
+       \text{E}\lbrace C^{ZF}\rbrace &\geq  \max\limits_{0\leq l \leq N}\ \bigg( Pr_\epsilon \cdot l\cdot \log_2(1 + \frac{P}{\text{Tr}(\Hat{W}^2,l)}) \bigg)\\
+       &=  \max\limits_{0\leq l \leq N}\ \bigg( Pr_\epsilon \cdot  l\cdot \log_2(1 + P \frac{\rho^-(1-\frac{\epsilon}{\rho^-})(1+(l-1)\frac{\epsilon}{\rho^-})}{l+(l^2-2l)\frac{\epsilon}{\rho^-}}) \bigg) \ \ ,
+     \end{aligned}
+ \end{equation}
+ where $l$ is the SUS group size, $\rho^-$, $\epsilon$ are parameters associated with orthogonality constraints on SUS groups.
+ 
+ It is important to note that the expression given in Eq. (\ref{eq:zf_bound}) assumes that the SUS group, $\mathsf{A}$ (where $\vert\mathsf{A}\vert =l$), is selected from a larger candidate group, $\mathsf{C}$ (ie. $\mathsf{A}\subset\mathsf{C} \ : \ \vert \mathsf{C} \vert = n$). That is, the expression assumes a value of $n$ is given.
